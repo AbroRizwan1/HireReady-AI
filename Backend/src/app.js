@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://hire-ready-ai-ye3c.vercel.app/",
     credentials: true,
   }),
 );
@@ -17,10 +17,8 @@ app.use(
 const authRouter = require("./routes/auth.route");
 const interviewRouter = require("./routes/interview.routes");
 
-
 // usering All The route Here
 app.use("/api/auth", authRouter);
 app.use("/api/interview", interviewRouter);
-
 
 module.exports = app;
