@@ -1,5 +1,4 @@
-const pdfParse = (await import("pdf-parse")).default;
-
+const pdfParse = require("pdf-parse");
 const {
   generateInterviewReport,
   generateResumePdf,

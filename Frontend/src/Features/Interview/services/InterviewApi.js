@@ -1,9 +1,10 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://hire-ready-ai-six.vercel.app",
+  baseURL: import.meta.env.VITE_REACT_APP_BACKEND_URL,
   withCredentials: true,
 });
+
 /**
  * @description: service to generate Interview Report based on user Self description,resume, job description
  */
@@ -78,9 +79,7 @@ export async function generateResumePdf(interviewReportId) {
 
 export async function deletInterviewReportApi(interviewId) {
   try {
-    const response = api.delete(
-      `/api/interview/${interviewId}`,
-    );
+    const response = api.delete(`/api/interview/${interviewId}`);
 
     return response?.data;
   } catch (error) {
