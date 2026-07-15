@@ -244,7 +244,6 @@ async function getMockInterviewController(req, res) {
 async function saveMockInterviewAnswerController(req, res) {
   const { answer, questionIndex, mockInterviewId } = req.body;
 
-
   const mockInterview = await mockInterviewModel.findById(mockInterviewId);
 
   if (!mockInterview) {
