@@ -1,4 +1,4 @@
-const pdfParse = require("pdf-parse");
+// const pdfParse = require("pdf-parse");
 const {
   generateInterviewReport,
   generateResumePdf,
@@ -120,33 +120,33 @@ async function deleteInterviewReportController(req, res) {
  * @description : controller to generate resume  PDF based on resume, job Description, self Description*
  */
 
-async function generateResumePdfController(req, res) {
-  const { interviewReportId } = req.params;
+// async function generateResumePdfController(req, res) {
+//   const { interviewReportId } = req.params;
 
-  const interviewReport =
-    await interviewReportModel.findById(interviewReportId);
+//   const interviewReport =
+//     await interviewReportModel.findById(interviewReportId);
 
-  if (!interviewReport) {
-    return res.status(404).json({
-      message: "Interview report not Found",
-    });
-  }
+//   if (!interviewReport) {
+//     return res.status(404).json({
+//       message: "Interview report not Found",
+//     });
+//   }
 
-  const { resume, jobDescription, selfDescription } = interviewReport;
+//   const { resume, jobDescription, selfDescription } = interviewReport;
 
-  const pdfBuffer = await generateResumePdf({
-    resume,
-    jobDescription,
-    selfDescription,
-  });
+//   const pdfBuffer = await generateResumePdf({
+//     resume,
+//     jobDescription,
+//     selfDescription,
+//   });
 
-  res.set({
-    "Content-Type": "application/pdf",
-    "Content-Disposition": `attachment; filename=resume_${interviewReportId}.pdf`,
-  });
+//   res.set({
+//     "Content-Type": "application/pdf",
+//     "Content-Disposition": `attachment; filename=resume_${interviewReportId}.pdf`,
+//   });
 
-  res.send(pdfBuffer);
-}
+//   res.send(pdfBuffer);
+// }
 
 /**
  * @description : generate MockInterview Question on the basic of Resume, jobDescription, selfDescription and SkillGaps*
@@ -384,7 +384,8 @@ module.exports = {
   generateInterviewReportController,
   getInterviewReportByIdController,
   getAllInterviewReportsController,
-  generateResumePdfController,
+  
+  //  generateResumePdfController,
   generateMockInterviewController,
   getMockInterviewController,
   saveMockInterviewAnswerController,

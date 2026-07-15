@@ -345,7 +345,7 @@ export default function InterviewPage(props) {
               </div>
               <div>
 
-                <button
+                {/* <button
                   disabled={resumeLoader}
                   type="button"
                   onClick={() => {
@@ -360,9 +360,8 @@ export default function InterviewPage(props) {
                     border: "1px solid rgba(113,90,90,0.3)",
                     color: "rgba(211,218,217,0.65)",
                   }}
-                // onMouseEnter / onMouseLeave handled via Tailwind hover: above
+           
                 >
-                  {/* Download icon */}
                   {resumeLoader ? (<Loader size="sm" />) : (
                     <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4"
                       fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -371,9 +370,8 @@ export default function InterviewPage(props) {
                     </svg>
                   )}
 
-                  {/* Label — always visible (icon alone is too small to tap) */}
                   <span>{resumeLoader ? "Downloading..." : "Download Resume"} </span>
-                </button>
+                </button> */}
 
                 <button
                   type="button"
@@ -518,8 +516,8 @@ export default function InterviewPage(props) {
 
               {/* Row 2: Buttons — stacked on mobile, side by side on sm+ */}
               <div className="flex flex-col sm:flex-row gap-2">
-
-                {/* Download Resume */}
+                  
+{/* 
                 <button
                   disabled={resumeLoader}
                   type="button"
@@ -546,7 +544,7 @@ export default function InterviewPage(props) {
                     </svg>
                   )}
                   <span>{resumeLoader ? "Downloading..." : "Download Resume"}</span>
-                </button>
+                </button> */}
 
                 {/* Start Mock Interview */}
                 <button

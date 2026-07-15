@@ -59,11 +59,12 @@ interviewRouter.delete(
  * @access: Private
  */
 
-interviewRouter.post(
-  "/resume/pdf/:interviewReportId",
-  authMiddleware.authUser,
-  interviewController.generateResumePdfController,
-);
+// interviewRouter.post(
+//   "/resume/pdf/:interviewReportId",
+//   authMiddleware.authUser,
+//   interviewController.generateResumePdfController,
+// );
+
 
 /**
  * @router POST /api/interview/mockInterview/start/interviewReportId

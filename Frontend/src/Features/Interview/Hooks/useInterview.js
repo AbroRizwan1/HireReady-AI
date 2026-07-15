@@ -104,44 +104,46 @@ export const useInterview = () => {
     }
   };
 
-  const getResumePdf = async (interviewReportId) => {
-    setResumeLoader(true);
 
-    try {
-      const response = await generateResumePdf(interviewReportId);
+  // const getResumePdf = async (interviewReportId) => {
+  //   setResumeLoader(true);
 
-      const url = window.URL.createObjectURL(
-        new Blob([response], { type: "application/pdf" }),
-      );
+  //   try {
+  //     const response = await generateResumePdf(interviewReportId);
 
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = `resume_${interviewReportId}.pdf`;
+  //     const url = window.URL.createObjectURL(
+  //       new Blob([response], { type: "application/pdf" }),
+  //     );
 
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
+  //     const link = document.createElement("a");
+  //     link.href = url;
+  //     link.download = `resume_${interviewReportId}.pdf`;
 
-      window.URL.revokeObjectURL(url);
+  //     document.body.appendChild(link);
+  //     link.click();
+  //     link.remove();
 
-      showToast("Resume downloaded successfully.", "success");
-    
-    } catch (error) {
-      if (error.response) {
-        showToast(
-          error.response?.data?.message || "Failed to download resume.",
-          "error",
-        );
-      } else if (error.request) {
-        showToast("Unable to connect to server.", "error");
-      } else {
-        showToast("Something went wrong.", "error");
-      }
-    } finally {
-      setResumeLoader(false);
-    }
-  };
+  //     window.URL.revokeObjectURL(url);
 
+  //     showToast("Resume downloaded successfully.", "success");
+
+  //   } catch (error) {
+  //     if (error.response) {
+  //       showToast(
+  //         error.response?.data?.message || "Failed to download resume.",
+  //         "error",
+  //       );
+  //     } else if (error.request) {
+  //       showToast("Unable to connect to server.", "error");
+  //     } else {
+  //       showToast("Something went wrong.", "error");
+  //     }
+  //   } finally {
+  //     setResumeLoader(false);
+  //   }
+  // };
+
+  
   const deleteInterviewReport = async (interviewId) => {
     setResumeLoader(true);
     setError(null);
