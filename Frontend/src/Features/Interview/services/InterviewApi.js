@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://hire-ready-ai-six.vercel.app/",
+  baseURL: "https://rizwan-ai-interview-backend.vercel.app/",
   withCredentials: true,
 });
 
