@@ -8,12 +8,12 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://rizwan-hire-ready-ai.vercel.app/",
+    origin: "https://rizwan-hire-ready-ai.vercel.app",
     credentials: true,
   }),
 );
-// require all Router here
 
+// require all Router here
 const authRouter = require("./routes/auth.route");
 const interviewRouter = require("./routes/interview.routes");
 

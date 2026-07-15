@@ -1,10 +1,9 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://rizwan-ai-interview-backend.vercel.app/",
+  baseURL: "https://hire-ready-ai-six.vercel.app",
   withCredentials: true,
 });
-
 /**
  * @description: service to generate Interview Report based on user Self description,resume, job description
  */
