@@ -154,6 +154,9 @@ const userlogout = async (req, res) => {
 const getMeController = async (req, res) => {
   const user = await userModel.findById(req.user.id);
 
+
+
+  
   res.status(200).json({
     message: "user details fetched successfully",
     user: {
