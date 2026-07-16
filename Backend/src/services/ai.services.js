@@ -442,7 +442,7 @@ Return JSON only.
 
 module.exports = {
   generateInterviewReport,
-  generateResumePdf,
+  // generateResumePdf,
   generateMockInterview,
   generateMockInterviewReport,
 };

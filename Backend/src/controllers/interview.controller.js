@@ -1,7 +1,7 @@
 // const pdfParse = require("pdf-parse");
 const {
   generateInterviewReport,
-  generateResumePdf,
+  // generateResumePdf,
   generateMockInterview,
   generateMockInterviewReport,
 } = require("../services/ai.services");
