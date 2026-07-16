@@ -13,6 +13,17 @@ app.use(
   }),
 );
 
+// ✅ middleware checks every request 
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (error) {
+    console.log("DB connection error:", error.message);
+    res.status(500).json({ message: "Database connection failed" });
+  }
+});
+
 // require all Router here
 const authRouter = require("./routes/auth.route");
 const interviewRouter = require("./routes/interview.routes");
