@@ -211,7 +211,15 @@ const SkillGapsList = ({ skillGaps }) => (
 export default function InterviewPage(props) {
   const { interviewId } = useParams()
   const navigate = useNavigate()
-  const { report, loading, getResumePdf, getReportById, resumeLoader, setResumeLoader } = useInterview()
+  const {
+    report,
+    loading,
+    // getResumePdf,
+    getReportById,
+    resumeLoader,
+    setResumeLoader
+  } = useInterview()
+  
   const { getInterviewReportId, getAllMockInterviewReports, mockReports, mockInterviewLoading, mockInterview, setMockReports, deleteMockInterviewReport, deleteLoading } = useMockInterview()
 
   const data = {
@@ -516,8 +524,8 @@ export default function InterviewPage(props) {
 
               {/* Row 2: Buttons — stacked on mobile, side by side on sm+ */}
               <div className="flex flex-col sm:flex-row gap-2">
-                  
-{/* 
+
+                {/* 
                 <button
                   disabled={resumeLoader}
                   type="button"

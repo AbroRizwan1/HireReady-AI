@@ -190,7 +190,7 @@ export const useInterview = () => {
     getReportById,
     getReports,
     generateReport,
-    getResumePdf,
+    // getResumePdf,
     deleteInterviewReport,
   };
 };
