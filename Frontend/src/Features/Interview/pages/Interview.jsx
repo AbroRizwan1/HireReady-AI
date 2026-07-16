@@ -219,7 +219,7 @@ export default function InterviewPage(props) {
     resumeLoader,
     setResumeLoader
   } = useInterview()
-  
+
   const { getInterviewReportId, getAllMockInterviewReports, mockReports, mockInterviewLoading, mockInterview, setMockReports, deleteMockInterviewReport, deleteLoading } = useMockInterview()
 
   const data = {

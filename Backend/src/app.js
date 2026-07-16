@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://rizwan1-hire-ready-ai.vercel.app",
+    origin: "https://hire-ready-ai-gncs.vercel.app",
     credentials: true,
   }),
 );
