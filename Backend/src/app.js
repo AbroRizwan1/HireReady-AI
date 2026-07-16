@@ -1,5 +1,6 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const connectDB = require("./db/db");
 const cors = require("cors");
 
 const app = express();
@@ -13,7 +14,7 @@ app.use(
   }),
 );
 
-// ✅ middleware checks every request 
+// ✅ middleware checks every request
 app.use(async (req, res, next) => {
   try {
     await connectDB();
