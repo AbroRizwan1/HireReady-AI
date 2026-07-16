@@ -1,6 +1,6 @@
 const dotenv = require("dotenv").config();
 const userModel = require("../models/user.model");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const JWT = require("jsonwebtoken");
 const blacklistToken = require("../models/blacklist.model");
 const tokenBlackListModel = require("../models/blacklist.model");
