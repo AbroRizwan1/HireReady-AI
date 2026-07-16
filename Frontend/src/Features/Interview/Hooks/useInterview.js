@@ -5,7 +5,7 @@ import {
   generateInterviewReport,
   getInterviewReportById,
   getAllInterviewReports,
-  generateResumePdf,
+  // generateResumePdf,
   deletInterviewReportApi,
 } from "../services/InterviewApi";
 
