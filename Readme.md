@@ -19,7 +19,18 @@ The system helps candidates understand their readiness level, improve weak areas
 * User Registration and Login
 * Secure JWT Authentication
 * Protected Routes
+* Cookie-based Authentication
+* Password Hashing using bcrypt
 * Logout Functionality
+
+### ✅ Validation & Error Handling
+* Client-side and Server-side Validation
+* Input Validation for User Data
+* File Upload Validation
+* Comprehensive API Error Handling
+* Custom Error Responses
+* Graceful Failure Handling for AI Requests
+
 
 ### 📄 Resume & Job Description Analysis
 
@@ -75,11 +86,22 @@ After completing the mock interview, the system generates:
 * Express.js
 * REST APIs
 * JWT Authentication
+* bcrypt
+* Cookie Parser
+* Express Middleware
 
 ### Database
 
 * MongoDB
 * Mongoose
+
+
+### Security & Validation
+* JWT Authentication
+* bcrypt Password Hashing
+* Route Protection
+* Request Validation
+* Error Handling Middleware
 
 ### AI Features
 
