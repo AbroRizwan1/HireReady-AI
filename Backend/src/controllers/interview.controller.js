@@ -1,4 +1,4 @@
-// const pdfParse = require("pdf-parse");
+const { PDFParse } = require("pdf-parse");
 const {
   generateInterviewReport,
   // generateResumePdf,
@@ -15,25 +15,43 @@ const mockInterviewModel = require("../models/mockInterview.model");
 
 const generateInterviewReportController = async (req, res) => {
   try {
+    // 1. File check
     if (!req.file) {
       return res.status(400).json({ message: "Resume file is required" });
     }
 
-    // pdf parsing
-    const resumeContent = await new pdfParse.PDFParse(
-      Uint8Array.from(req.file.buffer),
-    ).getText();
+    // 2. Auth check - CastError yahin se aa raha tha agar req.user undefined tha
+    if (!req.user || !req.user.id) {
+      return res.status(401).json({ message: "Unauthorized: user not found" });
+    }
 
     const { selfDescription, jobDescription } = req.body;
 
-    // AI call
+    // 3. Required fields check (optional but safe)
+    if (!selfDescription || !jobDescription) {
+      return res.status(400).json({
+        message: "selfDescription and jobDescription are required",
+      });
+    }
+
+    // 4. PDF parsing - correct v2 syntax
+    const parser = new PDFParse({ data: new Uint8Array(req.file.buffer) });
+    const resumeContent = await parser.getText();
+
+    if (!resumeContent?.text) {
+      return res
+        .status(422)
+        .json({ message: "Could not extract text from PDF" });
+    }
+
+    // 5. AI call
     const interviewReportByAi = await generateInterviewReport({
       resume: resumeContent.text,
       selfDescription,
       jobDescription,
     });
 
-    // DB save
+    // 6. DB save
     const interviewReport = await interviewReportModel.create({
       user: req.user.id,
       resume: resumeContent.text,
@@ -47,13 +65,13 @@ const generateInterviewReportController = async (req, res) => {
       interviewReport,
     });
   } catch (error) {
+    console.error("Interview Report Error:", error);
     return res.status(500).json({
       message: "Server error",
       error: error.message,
     });
   }
 };
-
 /**
  * @description : controller to get interview report by InterviewId *
  */
@@ -384,7 +402,7 @@ module.exports = {
   generateInterviewReportController,
   getInterviewReportByIdController,
   getAllInterviewReportsController,
-  
+
   //  generateResumePdfController,
   generateMockInterviewController,
   getMockInterviewController,

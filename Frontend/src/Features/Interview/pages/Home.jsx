@@ -84,8 +84,7 @@ export default function HomePage() {
 
   // ── Reset Handler ──────────────────────────────────────────
   // Clears all fields so user can start fresh after success
-  const handleDelete = async (interviewId) => {
-    
+  const handleDelete = async (interviewId) => {    
     await deleteInterviewReport(interviewId)
 
   }
