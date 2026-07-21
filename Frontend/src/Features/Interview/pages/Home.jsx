@@ -78,12 +78,12 @@ export default function HomePage() {
       resume
     })
 
-    navigate(`/interview/${data?._id}`)
+    navigate(`/interview/${data?.interviewReport?._id}`);
   };
 
   // ── Reset Handler ──────────────────────────────────────────
   // Clears all fields so user can start fresh after success
-  const handleDelete = async (interviewId) => {    
+  const handleDelete = async (interviewId) => {
     await deleteInterviewReport(interviewId)
 
   }
