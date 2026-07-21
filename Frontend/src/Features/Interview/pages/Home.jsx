@@ -33,7 +33,6 @@ export default function HomePage() {
   } = useInterview();
 
 
-
   // ── File Handler ───────────────────────────────────────────
   const handleFileChange = (file) => {
     if (file) {

@@ -78,6 +78,13 @@ const generateInterviewReportController = async (req, res) => {
 
 async function getInterviewReportByIdController(req, res) {
   const { interviewId } = req.params;
+  
+  console.log("interviewId:", interviewId);
+  console.log("req.user:", req.user);
+
+  if (!interviewId) {
+    return res.status(400).json({ message: "Interview ID is required" });
+  }
 
   const interviewReport = await interviewReportModel.findOne({
     _id: interviewId,
