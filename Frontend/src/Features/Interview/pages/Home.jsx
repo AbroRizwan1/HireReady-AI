@@ -78,7 +78,7 @@ export default function HomePage() {
       resume
     })
 
-    navigate(`/interview/${data?.interviewReport?._id}`);
+    navigate(`/interview/${data?._id}`);
   };
 
   // ── Reset Handler ──────────────────────────────────────────

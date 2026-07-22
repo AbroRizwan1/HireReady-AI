@@ -1,4 +1,4 @@
-const { PDFParse } = require("pdf-parse");
+const pdfParse = require("pdf-parse");
 const {
   generateInterviewReport,
   // generateResumePdf,
@@ -77,29 +77,39 @@ const generateInterviewReportController = async (req, res) => {
  */
 
 async function getInterviewReportByIdController(req, res) {
-  const { interviewId } = req.params;
-  
-  console.log("interviewId:", interviewId);
-  console.log("req.user:", req.user);
+  try {
+    const { interviewId } = req.params;
 
-  if (!interviewId) {
-    return res.status(400).json({ message: "Interview ID is required" });
-  }
+    if (!interviewId) {
+      return res.status(400).json({ message: "Interview ID is required" });
+    }
 
-  const interviewReport = await interviewReportModel.findOne({
-    _id: interviewId,
-    user: req.user.id,
-  });
-  if (!interviewReport) {
-    return res.status(404).json({
-      message: "Interview Report not found",
+    // ✅ ObjectId validity check - "undefined" ya invalid string yahin ruk jayegi
+    if (!mongoose.Types.ObjectId.isValid(interviewId)) {
+      return res.status(400).json({ message: "Invalid Interview ID" });
+    }
+
+    const interviewReport = await interviewReportModel.findOne({
+      _id: interviewId,
+      user: req.user.id,
+    });
+
+    if (!interviewReport) {
+      return res.status(404).json({
+        message: "Interview Report not found",
+      });
+    }
+
+    return res.status(200).json({
+      message: "Interview Report fetched Successfully",
+      interviewReport,
+    });
+  } catch (error) {
+    console.error("Get Interview Report Error:", error);
+    return res.status(500).json({
+      message: "Something went wrong while fetching interview report",
     });
   }
-
-  res.status(200).json({
-    message: "Interview Report fetched Successfully",
-    interviewReport,
-  });
 }
 
 /**
