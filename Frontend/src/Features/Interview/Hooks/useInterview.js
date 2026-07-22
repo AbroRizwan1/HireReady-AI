@@ -41,6 +41,9 @@ export const useInterview = () => {
         selfDescription,
       });
 
+      console.log("Full API response:", response); // 👈 ye add karo
+      console.log("interviewReport:", response?.interviewReport); // 👈 aur ye
+
       setReport(response?.interviewReport);
 
       if (!response?.interviewReport?._id) {
