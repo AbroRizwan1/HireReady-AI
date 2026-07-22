@@ -35,10 +35,15 @@ const generateInterviewReportController = async (req, res) => {
     }
 
     // 4. PDF parsing
-    const parser = new PDFParse({ data: new Uint8Array(req.file.buffer) });
-    const resumeContent = await parser.getText();
+    let resumeContent;
+    try {
+      resumeContent = await pdfParse(req.file.buffer);
+    } catch (pdfError) {
+      console.error("PDF Parse Error:", pdfError);
+      return res.status(422).json({ message: "Could not parse PDF file" });
+    }
 
-    if (!resumeContent?.text) {
+    if (!resumeContent?.text?.trim()) {
       return res
         .status(422)
         .json({ message: "Could not extract text from PDF" });
