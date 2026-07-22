@@ -34,7 +34,7 @@ const generateInterviewReportController = async (req, res) => {
       });
     }
 
-    // 4. PDF parsing - correct v2 syntax
+    // 4. PDF parsing
     const parser = new PDFParse({ data: new Uint8Array(req.file.buffer) });
     const resumeContent = await parser.getText();
 

@@ -78,7 +78,12 @@ export default function HomePage() {
       resume
     })
 
-    navigate(`/interview/${data?._id}`);
+    if (data?._id) {
+      navigate(`/interview/${data._id}`);
+    } else {
+      // navigate mat karo, user ko error dikha do (already toast ho chuka generateReport mein)
+      console.warn("Report generation failed or _id missing, not navigating.");
+    }
   };
 
   // ── Reset Handler ──────────────────────────────────────────

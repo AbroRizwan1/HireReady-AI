@@ -42,6 +42,12 @@ export const useInterview = () => {
       });
 
       setReport(response?.interviewReport);
+
+      if (!response?.interviewReport?._id) {
+        showToast("Failed to generate interview report.", "error");
+        return null;
+      }
+
       showToast("Interview report generated successfully.", "success");
       return response?.interviewReport;
     } catch (error) {
@@ -49,6 +55,7 @@ export const useInterview = () => {
         setError(error.response?.data?.message);
       } else if (error.request) {
         showToast("Unable to connect to server. Please try again", "error");
+        return null;
       } else {
         showToast("Something went wrong. Please try again.", "error");
       }
@@ -104,7 +111,6 @@ export const useInterview = () => {
     }
   };
 
-
   // const getResumePdf = async (interviewReportId) => {
   //   setResumeLoader(true);
 
@@ -143,7 +149,6 @@ export const useInterview = () => {
   //   }
   // };
 
-  
   const deleteInterviewReport = async (interviewId) => {
     setResumeLoader(true);
     setError(null);
