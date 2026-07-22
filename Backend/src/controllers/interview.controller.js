@@ -1,4 +1,4 @@
-const pdfParse = require("pdf-parse");
+const pdfParse = require("pdf-parse/lib/pdf-parse.js");
 const {
   generateInterviewReport,
   // generateResumePdf,
@@ -12,29 +12,24 @@ const mockInterviewModel = require("../models/mockInterview.model");
 /**
  * @description : controller to generate interview report based on user job description ,self description and resume
  */
-
 const generateInterviewReportController = async (req, res) => {
   try {
-    // 1. File check
     if (!req.file) {
       return res.status(400).json({ message: "Resume file is required" });
     }
 
-    // 2. Auth check - CastError yahin se aa raha tha agar req.user undefined tha
     if (!req.user || !req.user.id) {
       return res.status(401).json({ message: "Unauthorized: user not found" });
     }
 
     const { selfDescription, jobDescription } = req.body;
 
-    // 3. Required fields check (optional but safe)
     if (!selfDescription || !jobDescription) {
       return res.status(400).json({
         message: "selfDescription and jobDescription are required",
       });
     }
 
-    // 4. PDF parsing
     let resumeContent;
     try {
       resumeContent = await pdfParse(req.file.buffer);
@@ -49,14 +44,12 @@ const generateInterviewReportController = async (req, res) => {
         .json({ message: "Could not extract text from PDF" });
     }
 
-    // 5. AI call
     const interviewReportByAi = await generateInterviewReport({
       resume: resumeContent.text,
       selfDescription,
       jobDescription,
     });
 
-    // 6. DB save
     const interviewReport = await interviewReportModel.create({
       user: req.user.id,
       resume: resumeContent.text,
