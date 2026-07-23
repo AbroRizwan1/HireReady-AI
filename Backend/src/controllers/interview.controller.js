@@ -1,4 +1,4 @@
-const pdfParse = require("pdf-parse/lib/pdf-parse.js");
+const pdfParse = require("pdf-parse/lib/pdf-parse.js"); // top of file - import
 const {
   generateInterviewReport,
   // generateResumePdf,
@@ -9,6 +9,7 @@ const interviewReportModel = require("../models/interviewReport.model");
 const mockInterviewModel = require("../models/mockInterview.model");
 
 // const MockInterviewModel = require("../models/MockInterview.model");
+
 /**
  * @description : controller to generate interview report based on user job description ,self description and resume
  */
@@ -30,6 +31,7 @@ const generateInterviewReportController = async (req, res) => {
       });
     }
 
+    // ✅ Line 38 wala fix - PDFParse class ka istemal bilkul hata do
     let resumeContent;
     try {
       resumeContent = await pdfParse(req.file.buffer);
@@ -39,9 +41,7 @@ const generateInterviewReportController = async (req, res) => {
     }
 
     if (!resumeContent?.text?.trim()) {
-      return res
-        .status(422)
-        .json({ message: "Could not extract text from PDF" });
+      return res.status(422).json({ message: "Could not extract text from PDF" });
     }
 
     const interviewReportByAi = await generateInterviewReport({
