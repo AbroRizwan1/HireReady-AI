@@ -214,6 +214,7 @@ export default function InterviewPage(props) {
   const {
     report,
     loading,
+    error,
     // getResumePdf,
     getReportById,
     resumeLoader,
@@ -226,8 +227,6 @@ export default function InterviewPage(props) {
     ...(report || {}),
     ...props,
   };
-
-
 
 
   // Recent MockInterview Reports 
@@ -273,6 +272,20 @@ export default function InterviewPage(props) {
       </main>
     )
   }
+
+  if (!report) {
+    return (
+      <main>
+        <div style={{ textAlign: "center", padding: "2rem" }}>
+          <p>{error || "Report not found or failed to load."}</p>
+          <button onClick={() => getReportById(interviewId)}>
+            Retry
+          </button>
+        </div>
+      </main>
+    );
+  }
+
 
   return (
     <div style={{ background: "#37353E" }} className="min-h-screen flex item-center justify-center px-3 sm:px-4 py-6 sm:py-12 overflow-hidden relative" >
