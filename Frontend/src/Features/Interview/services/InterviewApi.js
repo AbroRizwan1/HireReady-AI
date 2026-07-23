@@ -32,6 +32,7 @@ export async function generateInterviewReport({
  */
 
 export async function getInterviewReportById(interviewId) {
+  console.log("From API=", interviewId);
   try {
     const response = await api.get(`/api/interview/report/${interviewId}`);
     return response?.data;
@@ -72,8 +73,6 @@ export async function getAllInterviewReports() {
 //     throw error;
 //   }
 // }
-
-
 
 /**
  * @description:Delete interview Report by Id
