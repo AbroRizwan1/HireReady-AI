@@ -227,6 +227,9 @@ export default function InterviewPage(props) {
     ...props,
   };
 
+
+
+
   // Recent MockInterview Reports 
   useEffect(() => {
     getAllMockInterviewReports()
@@ -234,10 +237,7 @@ export default function InterviewPage(props) {
 
   const handleDelete = async (mockInterviewId) => {
     await deleteMockInterviewReport(mockInterviewId)
-
   }
-
-
 
   const [activeTab, setActiveTab] = useState("technical");
   const [openCard, setOpenCard] = useState(null);
@@ -250,7 +250,6 @@ export default function InterviewPage(props) {
 
   const handleTabChange = (id) => { setActiveTab(id); setOpenCard(null); };
   const toggleCard = (key) => setOpenCard((p) => (p === key ? null : key));
-
 
 
   const activeQuestions =
@@ -267,14 +266,27 @@ export default function InterviewPage(props) {
   }
 
 
-  if (loading || !report) {
+  if (loading) {
     return (
       <main >
         {loading && <PageLoader label="Fetching your reports…" />}
       </main>
     )
-
   }
+
+  if (!report) {
+    return (
+      <main>
+        <div style={{ textAlign: "center", padding: "2rem" }}>
+          <p>{error || "Report not found or failed to load."}</p>
+          <button onClick={() => getReportById(interviewId)}>
+            Retry
+          </button>
+        </div>
+      </main>
+    );
+  }
+
 
   return (
     <div style={{ background: "#37353E" }} className="min-h-screen flex item-center justify-center px-3 sm:px-4 py-6 sm:py-12 overflow-hidden relative" >
