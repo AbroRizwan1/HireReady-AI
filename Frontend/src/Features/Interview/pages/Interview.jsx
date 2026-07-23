@@ -222,6 +222,15 @@ export default function InterviewPage(props) {
 
   const { getInterviewReportId, getAllMockInterviewReports, mockReports, mockInterviewLoading, mockInterview, setMockReports, deleteMockInterviewReport, deleteLoading } = useMockInterview()
 
+
+  if (loading) {
+    return (
+      <main >
+        {loading && <PageLoader label="Fetching your reports…" />}
+      </main>
+    )
+  }
+
   const data = {
     ...(report || {}),
     ...props,
@@ -263,15 +272,6 @@ export default function InterviewPage(props) {
     const data = await getInterviewReportId(interviewId)
 
     navigate(`/mock-interview/${data?.mockInterview?._id}`);
-  }
-
-
-  if (loading) {
-    return (
-      <main >
-        {loading && <PageLoader label="Fetching your reports…" />}
-      </main>
-    )
   }
 
 
