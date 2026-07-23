@@ -34,8 +34,11 @@ export async function generateInterviewReport({
 export async function getInterviewReportById(interviewId) {
   try {
     const response = await api.get(`/api/interview/report/${interviewId}`);
-    const data = response?.data;
-    return data;
+    console.log("RESPONSE", response);
+    console.log("RESPONSE DATA", response.data);
+    console.log("RESPONSE REPORT", response.data.interviewReport);
+
+    return response?.data;
   } catch (err) {
     console.error(err);
     throw err;

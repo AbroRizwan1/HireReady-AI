@@ -69,10 +69,6 @@ export const useInterview = () => {
 
     try {
       const response = await getInterviewReportById(interviewId);
-
-      console.log("FULL RESPONSE:", response);
-      console.log("interviewReport value:", response?.interviewReport);
-
       setReport(response?.interviewReport);
 
       return response?.interviewReport;
@@ -88,24 +84,24 @@ export const useInterview = () => {
       setLoading(false);
     }
   };
-  const getReportById = async (interviewId) => {
+
+  const getReports = async () => {
     setLoading(true);
-    setError(null);
 
     try {
-      const response = await getInterviewReportById(interviewId);
+      const response = await getAllInterviewReports();
 
-      if (response && response.interviewReport) {
-        setReport(response.interviewReport);
-        return response.interviewReport;
-      } else {
-        setError("Report data not found in response");
-      }
+      setReports(response?.interviewReports);
+
+      return response?.interviewReports;
     } catch (error) {
       if (error.response) {
-        setError(error.response?.data?.message || "Failed to fetch report");
+        showToast(
+          error.response?.data?.message || "Failed to load reports.",
+          "error",
+        );
       } else if (error.request) {
-        showToast("Unable to connect to server. please try again", "error");
+        showToast("Unable to connect to server.", "error");
       } else {
         showToast("Something went wrong.", "error");
       }
@@ -113,6 +109,7 @@ export const useInterview = () => {
       setLoading(false);
     }
   };
+
   // const getResumePdf = async (interviewReportId) => {
   //   setResumeLoader(true);
 
@@ -179,7 +176,6 @@ export const useInterview = () => {
   };
 
   useEffect(() => {
-    console.log("useEffect running, interviewId:", interviewId);
     if (interviewId) {
       getReportById(interviewId);
     } else {

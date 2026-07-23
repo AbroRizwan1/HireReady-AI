@@ -273,10 +273,6 @@ export default function InterviewPage(props) {
   //   )
   // }
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-  if (!report) return <div>No report found</div>;
-
   console.log(report);
 
   return (
