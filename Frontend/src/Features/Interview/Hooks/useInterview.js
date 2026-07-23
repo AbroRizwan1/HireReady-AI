@@ -88,24 +88,24 @@ export const useInterview = () => {
       setLoading(false);
     }
   };
-
-  const getReports = async () => {
+  const getReportById = async (interviewId) => {
     setLoading(true);
+    setError(null);
 
     try {
-      const response = await getAllInterviewReports();
+      const response = await getInterviewReportById(interviewId);
 
-      setReports(response?.interviewReports);
-
-      return response?.interviewReports;
+      if (response && response.interviewReport) {
+        setReport(response.interviewReport);
+        return response.interviewReport;
+      } else {
+        setError("Report data not found in response");
+      }
     } catch (error) {
       if (error.response) {
-        showToast(
-          error.response?.data?.message || "Failed to load reports.",
-          "error",
-        );
+        setError(error.response?.data?.message || "Failed to fetch report");
       } else if (error.request) {
-        showToast("Unable to connect to server.", "error");
+        showToast("Unable to connect to server. please try again", "error");
       } else {
         showToast("Something went wrong.", "error");
       }
@@ -113,7 +113,6 @@ export const useInterview = () => {
       setLoading(false);
     }
   };
-
   // const getResumePdf = async (interviewReportId) => {
   //   setResumeLoader(true);
 

@@ -265,13 +265,18 @@ export default function InterviewPage(props) {
     navigate(`/mock-interview/${data?.mockInterview?._id}`);
   }
 
-  if (loading) {
-    return (
-      <main >
-        {loading && <PageLoader label="Fetching your reports…" />}
-      </main>
-    )
-  }
+  // if (loading) {
+  //   return (
+  //     <main >
+  //       {loading && <PageLoader label="Fetching your reports…" />}
+  //     </main>
+  //   )
+  // }
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  if (!report) return <div>No report found</div>;
+
   console.log(report);
 
   return (
