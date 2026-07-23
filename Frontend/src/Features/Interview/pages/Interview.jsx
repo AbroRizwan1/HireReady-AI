@@ -222,15 +222,6 @@ export default function InterviewPage(props) {
 
   const { getInterviewReportId, getAllMockInterviewReports, mockReports, mockInterviewLoading, mockInterview, setMockReports, deleteMockInterviewReport, deleteLoading } = useMockInterview()
 
-
-  if (loading) {
-    return (
-      <main >
-        {loading && <PageLoader label="Fetching your reports…" />}
-      </main>
-    )
-  }
-
   const data = {
     ...(report || {}),
     ...props,
@@ -274,6 +265,14 @@ export default function InterviewPage(props) {
     navigate(`/mock-interview/${data?.mockInterview?._id}`);
   }
 
+
+  if (loading) {
+    return (
+      <main >
+        {loading && <PageLoader label="Fetching your reports…" />}
+      </main>
+    )
+  }
 
   return (
     <div style={{ background: "#37353E" }} className="min-h-screen flex item-center justify-center px-3 sm:px-4 py-6 sm:py-12 overflow-hidden relative" >
