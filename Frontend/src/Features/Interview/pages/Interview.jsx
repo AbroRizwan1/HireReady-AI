@@ -211,7 +211,6 @@ const SkillGapsList = ({ skillGaps }) => (
 export default function InterviewPage(props) {
   const { interviewId } = useParams()
 
-  console.log("INterviewID" , interviewId);
 
   const navigate = useNavigate()
   const {

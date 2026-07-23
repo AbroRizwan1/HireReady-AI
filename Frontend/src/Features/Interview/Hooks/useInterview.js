@@ -19,8 +19,6 @@ export const useInterview = () => {
   const [error, setError] = useState(null); // validation or server error
   const { interviewId } = useParams();
   const navigate = useNavigate();
-  
-  
 
   if (!context) {
     throw new Error("useInterview must be used within an InterviewProvider");
@@ -179,6 +177,7 @@ export const useInterview = () => {
   };
 
   useEffect(() => {
+    console.log("interviewId from useParams:", interviewId, typeof interviewId);
     if (interviewId) {
       getReportById(interviewId);
     } else {
