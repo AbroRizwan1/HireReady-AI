@@ -32,10 +32,10 @@ export async function generateInterviewReport({
  */
 
 export async function getInterviewReportById(interviewId) {
-  console.log("From API=", interviewId);
   try {
     const response = await api.get(`/api/interview/report/${interviewId}`);
-    return response?.data;
+    const data = response?.data;
+    return data;
   } catch (err) {
     console.error(err);
     throw err;

@@ -272,6 +272,7 @@ export default function InterviewPage(props) {
       </main>
     )
   }
+  console.log(report);
 
   return (
     <div style={{ background: "#37353E" }} className="min-h-screen flex item-center justify-center px-3 sm:px-4 py-6 sm:py-12 overflow-hidden relative" >

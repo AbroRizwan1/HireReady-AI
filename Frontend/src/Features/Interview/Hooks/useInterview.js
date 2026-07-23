@@ -69,9 +69,10 @@ export const useInterview = () => {
 
     try {
       const response = await getInterviewReportById(interviewId);
-     
-      console.log("Response = ", response);
-      console.log("ResponseInterview DATA = ".response.interviewReport);
+
+      console.log("FULL RESPONSE:", response);
+      console.log("interviewReport value:", response?.interviewReport);
+
       setReport(response?.interviewReport);
 
       return response?.interviewReport;
