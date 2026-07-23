@@ -180,6 +180,7 @@ export const useInterview = () => {
   };
 
   useEffect(() => {
+    console.log("useEffect running, interviewId:", interviewId);
     if (interviewId) {
       getReportById(interviewId);
     } else {
