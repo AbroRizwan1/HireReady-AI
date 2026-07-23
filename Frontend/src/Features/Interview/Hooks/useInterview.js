@@ -41,9 +41,6 @@ export const useInterview = () => {
         selfDescription,
       });
 
-      console.log("Full API response:", response); // 👈 ye add karo
-      console.log("interviewReport:", response?.interviewReport); // 👈 aur ye
-
       setReport(response?.interviewReport);
 
       if (!response?.interviewReport?._id) {
@@ -73,6 +70,8 @@ export const useInterview = () => {
     try {
       const response = await getInterviewReportById(interviewId);
 
+      console.log(response.InterviewReport);
+
       setReport(response?.interviewReport);
 
       return response?.interviewReport;
@@ -89,7 +88,6 @@ export const useInterview = () => {
     }
   };
 
-  
   const getReports = async () => {
     setLoading(true);
 
