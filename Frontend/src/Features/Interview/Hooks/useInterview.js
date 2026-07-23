@@ -19,6 +19,8 @@ export const useInterview = () => {
   const [error, setError] = useState(null); // validation or server error
   const { interviewId } = useParams();
   const navigate = useNavigate();
+  console.log("InterviewID", interviewId);
+  
 
   if (!context) {
     throw new Error("useInterview must be used within an InterviewProvider");
@@ -69,8 +71,6 @@ export const useInterview = () => {
 
     try {
       const response = await getInterviewReportById(interviewId);
-
-      console.log(response.InterviewReport);
 
       setReport(response?.interviewReport);
 

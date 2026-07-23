@@ -227,8 +227,7 @@ export default function InterviewPage(props) {
     ...(report || {}),
     ...props,
   };
-  console.log(report)
-
+ 
   // Recent MockInterview Reports 
   useEffect(() => {
     getAllMockInterviewReports()
