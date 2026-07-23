@@ -69,7 +69,8 @@ export const useInterview = () => {
 
     try {
       const response = await getInterviewReportById(interviewId);
-
+      console.log("Response = ", response);
+      console.log("ResponseInterview DATA = ".response.interviewReport);
       setReport(response?.interviewReport);
 
       return response?.interviewReport;
@@ -177,7 +178,6 @@ export const useInterview = () => {
   };
 
   useEffect(() => {
-    console.log("interviewId from useParams:", interviewId, typeof interviewId);
     if (interviewId) {
       getReportById(interviewId);
     } else {
