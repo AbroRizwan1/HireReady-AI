@@ -1,4 +1,4 @@
-const pdfParse = require("pdf-parse/lib/pdf-parse.js"); // top of file - import
+const pdfParse = require("pdf-parse/lib/pdf-parse.js"); 
 const {
   generateInterviewReport,
   // generateResumePdf,
@@ -31,7 +31,6 @@ const generateInterviewReportController = async (req, res) => {
       });
     }
 
-    // ✅ Line 38 wala fix - PDFParse class ka istemal bilkul hata do
     let resumeContent;
     try {
       resumeContent = await pdfParse(req.file.buffer);
