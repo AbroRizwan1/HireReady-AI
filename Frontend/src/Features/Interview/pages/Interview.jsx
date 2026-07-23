@@ -210,6 +210,9 @@ const SkillGapsList = ({ skillGaps }) => (
 
 export default function InterviewPage(props) {
   const { interviewId } = useParams()
+
+  console.log("INterviewID" , interviewId);
+
   const navigate = useNavigate()
   const {
     report,
@@ -227,7 +230,7 @@ export default function InterviewPage(props) {
     ...(report || {}),
     ...props,
   };
- 
+
   // Recent MockInterview Reports 
   useEffect(() => {
     getAllMockInterviewReports()

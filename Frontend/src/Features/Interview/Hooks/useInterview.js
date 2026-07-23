@@ -19,7 +19,7 @@ export const useInterview = () => {
   const [error, setError] = useState(null); // validation or server error
   const { interviewId } = useParams();
   const navigate = useNavigate();
-  console.log("InterviewID", interviewId);
+  
   
 
   if (!context) {
